@@ -8,7 +8,7 @@ from utils import true_class_from_signed_pt, confusion_matrix_3, roc_curve_binar
 from plotting import plot_confusion, plot_roc, plot_prob_vs_pt, plot_acceptance_vs_pt
 import numpy as np
 
-MODEL_PATHS = ["output/best_model_baseline.pth", "output/best_model_370ifb.pth"]
+MODEL_PATHS = ["output/best_model_370ifb.pth","output/best_model_baseline.pth", "output/best_model_1100ifb.pth"]
 CONFIG_PATHS = ["config/baseline.yml", "config/370ifb.yml", "config/1100ifb.yml"]
 
 device = "cuda"
@@ -101,7 +101,7 @@ for name, (_, _, auc) in rocs.items():
     print(f"[METRIC] {name} high-vs-low AUC: {auc:.6f}")
 
 plot_confusion(cm_by_model, outdir / "confusion_matrices.png")
-plot_roc(rocs, outdir / "roc_highpt.png")
+plot_roc(rocs, outdir / "roc_highpt_all_combination.png")
 plot_prob_vs_pt(true_pts, p_high, outdir / "pt_confidence_vs_true_pt.png", nbins=40)
 
 plot_acceptance_vs_pt(true_pts, {name: data[name]["pred_classes"] for name in data.keys()}, outdir / "acceptance_vs_true_pt.png")
