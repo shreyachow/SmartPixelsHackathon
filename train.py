@@ -96,7 +96,7 @@ def main(args):
     
                 if val_loss < best_val_loss:
                     best_val_loss = val_loss
-                    torch.save(model, f"{args.output}/best_model.pth")
+                    torch.save(model, f"{args.output}/best_model_1100ifb.pth")
 
 
 if __name__ == "__main__":
@@ -104,14 +104,14 @@ if __name__ == "__main__":
 
     # Dataset and architecture
     parser.add_argument(
-        "--data-config", "-c", type=str, default="config/baseline.yml"
+        "--data-config", "-c", type=str, default="config/1100ifb.yml"
     )
     parser.add_argument(
         "--model", "-m", type=str, default="towards-model-2", choices=list(REGISTRY.keys()), help="Model architecture."
     )
 
     # Training parameters
-    parser.add_argument("--epochs", type=int, default=200)
+    parser.add_argument("--epochs", type=int, default=10)
     parser.add_argument("--batch-size", "-bs", type=int, default=1024, help="Batch size")
     parser.add_argument("--learning-rate", "-lr", type=float, default=0.001, help="Learning rate")
     parser.add_argument("--val-size", type=float, default=0.01)
@@ -124,7 +124,7 @@ if __name__ == "__main__":
     )
 
     parser.add_argument(
-        "--device", type=str, default="cpu", choices=["cuda", "cpu", "mps"],
+        "--device", type=str, default="cuda", choices=["cuda", "cpu", "mps"],
         help="Device to use (cuda is faster)"
     )
 
